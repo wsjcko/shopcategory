@@ -16,7 +16,7 @@ update:
 
 .PHONY: tidy
 tidy:
-	@go env -w GOPROXY=https://goproxy.cn,https://proxy.golang.org,direct
+	@go env -w GOPROXY=https://goproxy.cn,direct
 	@go env -w GO111MODULE=on
 	@go mod tidy
 

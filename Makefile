@@ -1,0 +1,33 @@
+GOPATH:=$(shell go env GOPATH)
+
+.PHONY: init
+init:
+	@go get -u google.golang.org/protobuf/proto
+	@go install github.com/golang/protobuf/protoc-gen-go@latest
+	@go install github.com/asim/go-micro/cmd/protoc-gen-micro/v4@latest
+
+.PHONY: proto
+proto:
+	@protoc --proto_path=./proto/pb --micro_out=./protobuf/pb --gofast_out=./protobuf/pb proto/pb/*.proto
+
+.PHONY: update
+update:
+	@go get -u go-micro.dev/v4@latest
+
+.PHONY: tidy
+tidy:
+	@go env -w GOPROXY=https://goproxy.cn,https://proxy.golang.org,direct
+	@go env -w GO111MODULE=on
+	@go mod tidy
+
+.PHONY: build
+build:
+	@go build -o shopcategory *.go
+
+.PHONY: test
+test:
+	@go test -v ./... -cover
+
+.PHONY: docker
+docker:
+	@docker build -t shopcategory:latest .

@@ -10,11 +10,11 @@ import (
 )
 
 type ShopCategory struct {
-	CategoryDataService service.ICategoryDataService
+	CategoryService service.ICategoryDataService
 }
 
-func (c *ShopCategory) Init(categoryDataService service.ICategoryDataService) {
-	c.CategoryDataService = categoryDataService
+func (c *ShopCategory) Init(categoryService service.ICategoryDataService) {
+	c.CategoryService = categoryService
 }
 
 // CreateCategory 提供创建分类的服务
@@ -25,7 +25,7 @@ func (c *ShopCategory) CreateCategory(ctx context.Context, request *pb.CategoryR
 	if err != nil {
 		return err
 	}
-	categoryId, err := c.CategoryDataService.AddCategory(category)
+	categoryId, err := c.CategoryService.AddCategory(category)
 	if err != nil {
 		return err
 	}
@@ -41,7 +41,7 @@ func (c *ShopCategory) UpdateCategory(ctx context.Context, request *pb.CategoryR
 	if err != nil {
 		return err
 	}
-	err = c.CategoryDataService.UpdateCategory(category)
+	err = c.CategoryService.UpdateCategory(category)
 	if err != nil {
 		return err
 	}
@@ -51,7 +51,7 @@ func (c *ShopCategory) UpdateCategory(ctx context.Context, request *pb.CategoryR
 
 // DeleteCategory 提供分类删除服务
 func (c *ShopCategory) DeleteCategory(ctx context.Context, request *pb.DeleteCategoryRequest, response *pb.DeleteCategoryResponse) error {
-	err := c.CategoryDataService.DeleteCategory(request.CategoryId)
+	err := c.CategoryService.DeleteCategory(request.CategoryId)
 	if err != nil {
 		return nil
 	}
@@ -61,7 +61,7 @@ func (c *ShopCategory) DeleteCategory(ctx context.Context, request *pb.DeleteCat
 
 // FindCategoryByName 根据分类名称查找分类
 func (c *ShopCategory) FindCategoryByName(ctx context.Context, request *pb.FindByNameRequest, response *pb.CategoryResponse) error {
-	category, err := c.CategoryDataService.FindCategoryByName(request.CategoryName)
+	category, err := c.CategoryService.FindCategoryByName(request.CategoryName)
 	if err != nil {
 		return err
 	}
@@ -70,7 +70,7 @@ func (c *ShopCategory) FindCategoryByName(ctx context.Context, request *pb.FindB
 
 // FindCategoryByID 根据分类ID查找分类
 func (c *ShopCategory) FindCategoryByID(ctx context.Context, request *pb.FindByIdRequest, response *pb.CategoryResponse) error {
-	category, err := c.CategoryDataService.FindCategoryByID(request.CategoryId)
+	category, err := c.CategoryService.FindCategoryByID(request.CategoryId)
 	if err != nil {
 		return err
 	}
@@ -78,7 +78,7 @@ func (c *ShopCategory) FindCategoryByID(ctx context.Context, request *pb.FindByI
 }
 
 func (c *ShopCategory) FindCategoryByLevel(ctx context.Context, request *pb.FindByLevelRequest, response *pb.FindAllResponse) error {
-	categorySlice, err := c.CategoryDataService.FindCategoryByLevel(request.Level)
+	categorySlice, err := c.CategoryService.FindCategoryByLevel(request.Level)
 	if err != nil {
 		return err
 	}
@@ -87,7 +87,7 @@ func (c *ShopCategory) FindCategoryByLevel(ctx context.Context, request *pb.Find
 }
 
 func (c *ShopCategory) FindCategoryByParent(ctx context.Context, request *pb.FindByParentRequest, response *pb.FindAllResponse) error {
-	categorySlice, err := c.CategoryDataService.FindCategoryByParent(request.ParentId)
+	categorySlice, err := c.CategoryService.FindCategoryByParent(request.ParentId)
 	if err != nil {
 		return err
 	}
@@ -96,7 +96,7 @@ func (c *ShopCategory) FindCategoryByParent(ctx context.Context, request *pb.Fin
 }
 
 func (c *ShopCategory) FindAllCategory(ctx context.Context, request *pb.FindAllRequest, response *pb.FindAllResponse) error {
-	categorySlice, err := c.CategoryDataService.FindAllCategory()
+	categorySlice, err := c.CategoryService.FindAllCategory()
 	if err != nil {
 		return err
 	}

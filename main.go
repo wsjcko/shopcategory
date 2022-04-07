@@ -17,7 +17,7 @@ import (
 var (
 	MICRO_SERVICE_NAME = "go.micro.service.shop.category"
 	MICRO_VERSION      = "latest"
-	MICRO_ADDRESS      = "127.0.0.1:8082"
+	MICRO_ADDRESS      = "127.0.0.1:8086"
 )
 
 func main() {

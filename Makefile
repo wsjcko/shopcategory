@@ -2,8 +2,10 @@ GOPATH:=$(shell go env GOPATH)
 
 .PHONY: init
 init:
+	@go env -w GOPROXY=https://goproxy.cn,direct
+	@go env -w GO111MODULE=on
 	@go get -u google.golang.org/protobuf/proto
-	@go install github.com/golang/protobuf/protoc-gen-go@latest
+	@go install github.com/gogo/protobuf/protoc-gen-gofast@latest
 	@go install github.com/asim/go-micro/cmd/protoc-gen-micro/v4@latest
 
 .PHONY: proto

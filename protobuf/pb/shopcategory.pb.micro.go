@@ -27,15 +27,15 @@ var _ context.Context
 var _ client.Option
 var _ server.Option
 
-// Api Endpoints for Category service
+// Api Endpoints for ShopCategory service
 
-func NewCategoryEndpoints() []*api.Endpoint {
+func NewShopCategoryEndpoints() []*api.Endpoint {
 	return []*api.Endpoint{}
 }
 
-// Client API for Category service
+// Client API for ShopCategory service
 
-type CategoryService interface {
+type ShopCategoryService interface {
 	CreateCategory(ctx context.Context, in *CategoryRequest, opts ...client.CallOption) (*CreateCategoryResponse, error)
 	UpdateCategory(ctx context.Context, in *CategoryRequest, opts ...client.CallOption) (*UpdateCategoryResponse, error)
 	DeleteCategory(ctx context.Context, in *DeleteCategoryRequest, opts ...client.CallOption) (*DeleteCategoryResponse, error)
@@ -46,20 +46,20 @@ type CategoryService interface {
 	FindAllCategory(ctx context.Context, in *FindAllRequest, opts ...client.CallOption) (*FindAllResponse, error)
 }
 
-type categoryService struct {
+type shopCategoryService struct {
 	c    client.Client
 	name string
 }
 
-func NewCategoryService(name string, c client.Client) CategoryService {
-	return &categoryService{
+func NewShopCategoryService(name string, c client.Client) ShopCategoryService {
+	return &shopCategoryService{
 		c:    c,
 		name: name,
 	}
 }
 
-func (c *categoryService) CreateCategory(ctx context.Context, in *CategoryRequest, opts ...client.CallOption) (*CreateCategoryResponse, error) {
-	req := c.c.NewRequest(c.name, "Category.CreateCategory", in)
+func (c *shopCategoryService) CreateCategory(ctx context.Context, in *CategoryRequest, opts ...client.CallOption) (*CreateCategoryResponse, error) {
+	req := c.c.NewRequest(c.name, "ShopCategory.CreateCategory", in)
 	out := new(CreateCategoryResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -68,8 +68,8 @@ func (c *categoryService) CreateCategory(ctx context.Context, in *CategoryReques
 	return out, nil
 }
 
-func (c *categoryService) UpdateCategory(ctx context.Context, in *CategoryRequest, opts ...client.CallOption) (*UpdateCategoryResponse, error) {
-	req := c.c.NewRequest(c.name, "Category.UpdateCategory", in)
+func (c *shopCategoryService) UpdateCategory(ctx context.Context, in *CategoryRequest, opts ...client.CallOption) (*UpdateCategoryResponse, error) {
+	req := c.c.NewRequest(c.name, "ShopCategory.UpdateCategory", in)
 	out := new(UpdateCategoryResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -78,8 +78,8 @@ func (c *categoryService) UpdateCategory(ctx context.Context, in *CategoryReques
 	return out, nil
 }
 
-func (c *categoryService) DeleteCategory(ctx context.Context, in *DeleteCategoryRequest, opts ...client.CallOption) (*DeleteCategoryResponse, error) {
-	req := c.c.NewRequest(c.name, "Category.DeleteCategory", in)
+func (c *shopCategoryService) DeleteCategory(ctx context.Context, in *DeleteCategoryRequest, opts ...client.CallOption) (*DeleteCategoryResponse, error) {
+	req := c.c.NewRequest(c.name, "ShopCategory.DeleteCategory", in)
 	out := new(DeleteCategoryResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -88,8 +88,8 @@ func (c *categoryService) DeleteCategory(ctx context.Context, in *DeleteCategory
 	return out, nil
 }
 
-func (c *categoryService) FindCategoryByName(ctx context.Context, in *FindByNameRequest, opts ...client.CallOption) (*CategoryResponse, error) {
-	req := c.c.NewRequest(c.name, "Category.FindCategoryByName", in)
+func (c *shopCategoryService) FindCategoryByName(ctx context.Context, in *FindByNameRequest, opts ...client.CallOption) (*CategoryResponse, error) {
+	req := c.c.NewRequest(c.name, "ShopCategory.FindCategoryByName", in)
 	out := new(CategoryResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -98,8 +98,8 @@ func (c *categoryService) FindCategoryByName(ctx context.Context, in *FindByName
 	return out, nil
 }
 
-func (c *categoryService) FindCategoryByID(ctx context.Context, in *FindByIdRequest, opts ...client.CallOption) (*CategoryResponse, error) {
-	req := c.c.NewRequest(c.name, "Category.FindCategoryByID", in)
+func (c *shopCategoryService) FindCategoryByID(ctx context.Context, in *FindByIdRequest, opts ...client.CallOption) (*CategoryResponse, error) {
+	req := c.c.NewRequest(c.name, "ShopCategory.FindCategoryByID", in)
 	out := new(CategoryResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -108,8 +108,8 @@ func (c *categoryService) FindCategoryByID(ctx context.Context, in *FindByIdRequ
 	return out, nil
 }
 
-func (c *categoryService) FindCategoryByLevel(ctx context.Context, in *FindByLevelRequest, opts ...client.CallOption) (*FindAllResponse, error) {
-	req := c.c.NewRequest(c.name, "Category.FindCategoryByLevel", in)
+func (c *shopCategoryService) FindCategoryByLevel(ctx context.Context, in *FindByLevelRequest, opts ...client.CallOption) (*FindAllResponse, error) {
+	req := c.c.NewRequest(c.name, "ShopCategory.FindCategoryByLevel", in)
 	out := new(FindAllResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -118,8 +118,8 @@ func (c *categoryService) FindCategoryByLevel(ctx context.Context, in *FindByLev
 	return out, nil
 }
 
-func (c *categoryService) FindCategoryByParent(ctx context.Context, in *FindByParentRequest, opts ...client.CallOption) (*FindAllResponse, error) {
-	req := c.c.NewRequest(c.name, "Category.FindCategoryByParent", in)
+func (c *shopCategoryService) FindCategoryByParent(ctx context.Context, in *FindByParentRequest, opts ...client.CallOption) (*FindAllResponse, error) {
+	req := c.c.NewRequest(c.name, "ShopCategory.FindCategoryByParent", in)
 	out := new(FindAllResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -128,8 +128,8 @@ func (c *categoryService) FindCategoryByParent(ctx context.Context, in *FindByPa
 	return out, nil
 }
 
-func (c *categoryService) FindAllCategory(ctx context.Context, in *FindAllRequest, opts ...client.CallOption) (*FindAllResponse, error) {
-	req := c.c.NewRequest(c.name, "Category.FindAllCategory", in)
+func (c *shopCategoryService) FindAllCategory(ctx context.Context, in *FindAllRequest, opts ...client.CallOption) (*FindAllResponse, error) {
+	req := c.c.NewRequest(c.name, "ShopCategory.FindAllCategory", in)
 	out := new(FindAllResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -138,9 +138,9 @@ func (c *categoryService) FindAllCategory(ctx context.Context, in *FindAllReques
 	return out, nil
 }
 
-// Server API for Category service
+// Server API for ShopCategory service
 
-type CategoryHandler interface {
+type ShopCategoryHandler interface {
 	CreateCategory(context.Context, *CategoryRequest, *CreateCategoryResponse) error
 	UpdateCategory(context.Context, *CategoryRequest, *UpdateCategoryResponse) error
 	DeleteCategory(context.Context, *DeleteCategoryRequest, *DeleteCategoryResponse) error
@@ -151,8 +151,8 @@ type CategoryHandler interface {
 	FindAllCategory(context.Context, *FindAllRequest, *FindAllResponse) error
 }
 
-func RegisterCategoryHandler(s server.Server, hdlr CategoryHandler, opts ...server.HandlerOption) error {
-	type category interface {
+func RegisterShopCategoryHandler(s server.Server, hdlr ShopCategoryHandler, opts ...server.HandlerOption) error {
+	type shopCategory interface {
 		CreateCategory(ctx context.Context, in *CategoryRequest, out *CreateCategoryResponse) error
 		UpdateCategory(ctx context.Context, in *CategoryRequest, out *UpdateCategoryResponse) error
 		DeleteCategory(ctx context.Context, in *DeleteCategoryRequest, out *DeleteCategoryResponse) error
@@ -162,45 +162,45 @@ func RegisterCategoryHandler(s server.Server, hdlr CategoryHandler, opts ...serv
 		FindCategoryByParent(ctx context.Context, in *FindByParentRequest, out *FindAllResponse) error
 		FindAllCategory(ctx context.Context, in *FindAllRequest, out *FindAllResponse) error
 	}
-	type Category struct {
-		category
+	type ShopCategory struct {
+		shopCategory
 	}
-	h := &categoryHandler{hdlr}
-	return s.Handle(s.NewHandler(&Category{h}, opts...))
+	h := &shopCategoryHandler{hdlr}
+	return s.Handle(s.NewHandler(&ShopCategory{h}, opts...))
 }
 
-type categoryHandler struct {
-	CategoryHandler
+type shopCategoryHandler struct {
+	ShopCategoryHandler
 }
 
-func (h *categoryHandler) CreateCategory(ctx context.Context, in *CategoryRequest, out *CreateCategoryResponse) error {
-	return h.CategoryHandler.CreateCategory(ctx, in, out)
+func (h *shopCategoryHandler) CreateCategory(ctx context.Context, in *CategoryRequest, out *CreateCategoryResponse) error {
+	return h.ShopCategoryHandler.CreateCategory(ctx, in, out)
 }
 
-func (h *categoryHandler) UpdateCategory(ctx context.Context, in *CategoryRequest, out *UpdateCategoryResponse) error {
-	return h.CategoryHandler.UpdateCategory(ctx, in, out)
+func (h *shopCategoryHandler) UpdateCategory(ctx context.Context, in *CategoryRequest, out *UpdateCategoryResponse) error {
+	return h.ShopCategoryHandler.UpdateCategory(ctx, in, out)
 }
 
-func (h *categoryHandler) DeleteCategory(ctx context.Context, in *DeleteCategoryRequest, out *DeleteCategoryResponse) error {
-	return h.CategoryHandler.DeleteCategory(ctx, in, out)
+func (h *shopCategoryHandler) DeleteCategory(ctx context.Context, in *DeleteCategoryRequest, out *DeleteCategoryResponse) error {
+	return h.ShopCategoryHandler.DeleteCategory(ctx, in, out)
 }
 
-func (h *categoryHandler) FindCategoryByName(ctx context.Context, in *FindByNameRequest, out *CategoryResponse) error {
-	return h.CategoryHandler.FindCategoryByName(ctx, in, out)
+func (h *shopCategoryHandler) FindCategoryByName(ctx context.Context, in *FindByNameRequest, out *CategoryResponse) error {
+	return h.ShopCategoryHandler.FindCategoryByName(ctx, in, out)
 }
 
-func (h *categoryHandler) FindCategoryByID(ctx context.Context, in *FindByIdRequest, out *CategoryResponse) error {
-	return h.CategoryHandler.FindCategoryByID(ctx, in, out)
+func (h *shopCategoryHandler) FindCategoryByID(ctx context.Context, in *FindByIdRequest, out *CategoryResponse) error {
+	return h.ShopCategoryHandler.FindCategoryByID(ctx, in, out)
 }
 
-func (h *categoryHandler) FindCategoryByLevel(ctx context.Context, in *FindByLevelRequest, out *FindAllResponse) error {
-	return h.CategoryHandler.FindCategoryByLevel(ctx, in, out)
+func (h *shopCategoryHandler) FindCategoryByLevel(ctx context.Context, in *FindByLevelRequest, out *FindAllResponse) error {
+	return h.ShopCategoryHandler.FindCategoryByLevel(ctx, in, out)
 }
 
-func (h *categoryHandler) FindCategoryByParent(ctx context.Context, in *FindByParentRequest, out *FindAllResponse) error {
-	return h.CategoryHandler.FindCategoryByParent(ctx, in, out)
+func (h *shopCategoryHandler) FindCategoryByParent(ctx context.Context, in *FindByParentRequest, out *FindAllResponse) error {
+	return h.ShopCategoryHandler.FindCategoryByParent(ctx, in, out)
 }
 
-func (h *categoryHandler) FindAllCategory(ctx context.Context, in *FindAllRequest, out *FindAllResponse) error {
-	return h.CategoryHandler.FindAllCategory(ctx, in, out)
+func (h *shopCategoryHandler) FindAllCategory(ctx context.Context, in *FindAllRequest, out *FindAllResponse) error {
+	return h.ShopCategoryHandler.FindAllCategory(ctx, in, out)
 }

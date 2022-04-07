@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package go.micro.service.shop.category;
 
-service Category {
+service ShopCategory {
 	rpc CreateCategory(CategoryRequest) returns (CreateCategoryResponse) {}
 	rpc UpdateCategory(CategoryRequest) returns (UpdateCategoryResponse) {}
 	rpc DeleteCategory(DeleteCategoryRequest) returns (DeleteCategoryResponse){}

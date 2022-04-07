@@ -10,10 +10,10 @@ import (
 )
 
 type ShopCategory struct {
-	CategoryService service.ICategoryDataService
+	CategoryService service.ICategoryService
 }
 
-func (c *ShopCategory) Init(categoryService service.ICategoryDataService) {
+func (c *ShopCategory) Init(categoryService service.ICategoryService) {
 	c.CategoryService = categoryService
 }
 

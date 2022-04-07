@@ -15,9 +15,9 @@ import (
 )
 
 var (
-	serviceName = "go.micro.service.shop.category"
-	version     = "latest"
-	address     = "127.0.0.1:8082"
+	MICRO_SERVICE_NAME = "go.micro.service.shop.category"
+	MICRO_VERSION      = "latest"
+	MICRO_ADDRESS      = "127.0.0.1:8082"
 )
 
 func main() {
@@ -35,10 +35,10 @@ func main() {
 
 	// Create service
 	srv := micro.NewService(
-		micro.Name(serviceName),
-		micro.Version(version),
+		micro.Name(MICRO_SERVICE_NAME),
+		micro.Version(MICRO_VERSION),
 		//这里设置地址和需要暴露的端口
-		micro.Address(address),
+		micro.Address(MICRO_ADDRESS),
 		//添加consul 作为注册中心
 		micro.Registry(consulRegistry),
 	)
@@ -56,12 +56,15 @@ func main() {
 	db.SingularTable(true)
 
 	//初始化创建表
-	// repository.NewCategoryRepository(db).InitTable() //gorm 创建表  只需执行一次
-	categoryService := service.NewCategoryDataService(repository.NewCategoryRepository(db))
+	// err = repository.NewCategoryRepository(db).InitTable() //gorm 创建表  只需执行一次
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	categoryService := service.NewCategoryService(repository.NewCategoryRepository(db))
 	srv.Init()
 
 	// Register handler
-	err = pb.RegisterCategoryHandler(srv.Server(), &handler.ShopCategory{CategoryService: categoryService})
+	err = pb.RegisterShopCategoryHandler(srv.Server(), &handler.ShopCategory{CategoryService: categoryService})
 
 	// Run service
 	if err := srv.Run(); err != nil {

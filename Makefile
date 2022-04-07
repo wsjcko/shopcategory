@@ -25,7 +25,7 @@ build:
 	@go build -o shopcategory *.go
 
 .PHONY: run
-build:
+run:
 	@go run main.go
 
 .PHONY: test
